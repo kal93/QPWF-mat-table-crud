@@ -7,7 +7,7 @@ import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 export class TableAuthorsService {
   // private readonly API_URL = 'https://api.github.com/repos/angular/angular/issues';
 
-  private readonly API_URL = '/assets/data/data-my-questions.json';
+  private readonly API_URL = '/assets/data/data-authors.json';
 
   dataChange: BehaviorSubject<AuthorsInterface[]> = new BehaviorSubject<AuthorsInterface[]>([]);
   // Temporarily stores data from dialogs
