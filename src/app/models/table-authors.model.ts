@@ -1,8 +1,6 @@
-export class AuthorsInterface {
+export interface AuthorsInterface {
   id: number;
-  title: string;
-  state: string;
-  url: string;
-  created_at: string;
-  updated_at: string;
+  author: string;
+  signatureStatus: string;
+  signatureDate: string;
 }

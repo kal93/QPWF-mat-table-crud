@@ -23,11 +23,9 @@ import { DeleteDialogComponent } from '../../dialogs/delete/delete.dialog.compon
 export class TableAuthorsComponent implements OnInit {
   displayedColumns = [
     'id',
-    'title',
-    'state',
-    'url',
-    'created_at',
-    'updated_at',
+    'author',
+    'signatureStatus',
+    'signatureDate',
     'actions'
   ];
   exampleDatabase: TableAuthorsService | null;
@@ -76,11 +74,9 @@ export class TableAuthorsComponent implements OnInit {
   startEdit(
     i: number,
     id: number,
-    title: string,
-    state: string,
-    url: string,
-    created_at: string,
-    updated_at: string
+    author: string,
+    signatureStatus: string,
+    signatureDate: string,
   ) {
     this.id = id;
     // index row is used just for debugging proposes and can be removed
@@ -89,11 +85,9 @@ export class TableAuthorsComponent implements OnInit {
     const dialogRef = this.dialog.open(EditDialogComponent, {
       data: {
         id: id,
-        title: title,
-        state: state,
-        url: url,
-        created_at: created_at,
-        updated_at: updated_at
+        author: author,
+        signatureStatus: signatureStatus,
+        signatureDate: signatureDate
       }
     });
 
@@ -113,11 +107,11 @@ export class TableAuthorsComponent implements OnInit {
     });
   }
 
-  deleteItem(i: number, id: number, title: string, state: string, url: string) {
+  deleteItem(i: number, id: number, author: string, signatureStatus: string, signatureDate: string) {
     this.index = i;
     this.id = id;
     const dialogRef = this.dialog.open(DeleteDialogComponent, {
-      data: { id: id, title: title, state: state, url: url }
+      data: { id: id, author: author, signatureStatus: signatureStatus, signatureDate: signatureDate }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -211,9 +205,9 @@ export class ExampleDataSource extends DataSource<AuthorsInterface> {
         .filter((authorsData: AuthorsInterface) => {
           const searchStr = (
             authorsData.id +
-            authorsData.title +
-            authorsData.url +
-            authorsData.created_at
+            authorsData.author +
+            authorsData.signatureStatus +
+            authorsData.signatureDate
           ).toLowerCase();
           return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
         });
@@ -246,20 +240,14 @@ export class ExampleDataSource extends DataSource<AuthorsInterface> {
         case 'id':
           [propertyA, propertyB] = [a.id, b.id];
           break;
-        case 'title':
-          [propertyA, propertyB] = [a.title, b.title];
+        case 'author':
+          [propertyA, propertyB] = [a.author, b.author];
           break;
-        case 'state':
-          [propertyA, propertyB] = [a.state, b.state];
+        case 'signatureStatus':
+          [propertyA, propertyB] = [a.signatureStatus, b.signatureStatus];
           break;
-        case 'url':
-          [propertyA, propertyB] = [a.url, b.url];
-          break;
-        case 'created_at':
-          [propertyA, propertyB] = [a.created_at, b.created_at];
-          break;
-        case 'updated_at':
-          [propertyA, propertyB] = [a.updated_at, b.updated_at];
+        case 'signatureDate':
+          [propertyA, propertyB] = [a.signatureDate, b.signatureDate];
           break;
       }
 
